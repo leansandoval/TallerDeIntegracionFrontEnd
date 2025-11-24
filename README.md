@@ -1,4 +1,40 @@
-# TPIntegracionFrontEnd
+# Taller de Integración - FrontEnd
+
+## Información de la Asignatura
+* **Carrera**: Ingeniería en Informática
+* **Asignatura**: Taller de Integración (3680)
+* **Cuatrimestre**: Primer Cuatrimestre
+* **Año**: 2024
+* **Grupo**: 1
+
+## Trayecto - Gestión y Complementarias
+
+* **Año académico**: Segundo Año - Segundo Cuatrimestre
+* **Responsable / Jefe de catedra**: Eribe, Roberto
+* **Carga horaria semanal**: 4 hs
+* **Carga horaria total**: 64 hs
+* **Modalidad**: Virtual
+* **Correlativas anteriores**
+    * Principios de Calidad de Software (3626)
+    * Introducción a la Gestión de Requisitos (3630)
+    * Introducción a Proyectos Informáticos (3632)
+    * Tópicos de Programación (3635)
+    * Bases de Datos (3636)
+    * Arquitectura de Computadoras (3638)
+
+## Docentes
+* Bucher, Mariano
+* Eribe, Roberto
+* Paker, Fernando
+
+## Integrantes
+| DNI | Apellido/s | Nombre/s |
+|--|--|--|
+| 40.137.650 | Corrales | Mauro Exequiel |
+| 44.834.085 | Justiniano | Maximo |
+| 37.276.705 | Pompeo | Nicolas Ruben |
+| 41.548.235 | Sandoval Vasquez | Juan Leandro |
+| 37.841.788 | Sullca | Willian Fernando |
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
 
