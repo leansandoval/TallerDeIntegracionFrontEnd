@@ -5,9 +5,10 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 import { VentaService } from 'src/app/services/venta/venta.service';
 
 @Component({
-  selector: 'app-ventas',
-  templateUrl: './ventas.component.html',
-  styleUrls: ['./ventas.component.css']
+    selector: 'app-ventas',
+    templateUrl: './ventas.component.html',
+    styleUrls: ['./ventas.component.css'],
+    standalone: false
 })
 
 export class VentasComponent implements OnInit {

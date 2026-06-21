@@ -5,9 +5,10 @@ import { VentaService } from 'src/app/services/venta/venta.service';
 import * as XLSX from 'xlsx';
 
 @Component({
-  selector: 'app-detalle-venta',
-  templateUrl: './detalle-venta.component.html',
-  styleUrls: ['./detalle-venta.component.css']
+    selector: 'app-detalle-venta',
+    templateUrl: './detalle-venta.component.html',
+    styleUrls: ['./detalle-venta.component.css'],
+    standalone: false
 })
 
 export class DetalleVentaComponent implements OnInit {

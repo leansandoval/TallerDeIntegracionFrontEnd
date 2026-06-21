@@ -1,9 +1,10 @@
 import { Component, Input, OnInit , OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
-  selector: 'app-notificacion',
-  templateUrl: './notificacion.component.html',
-  styleUrls: ['./notificacion.component.css']
+    selector: 'app-notificacion',
+    templateUrl: './notificacion.component.html',
+    styleUrls: ['./notificacion.component.css'],
+    standalone: false
 })
 export class NotificacionComponent implements OnChanges {
 

@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 
 @Component({
-	selector: 'app-editar-producto',
-	templateUrl: './editar-producto.component.html',
-	styleUrls: ['./editar-producto.component.css']
+    selector: 'app-editar-producto',
+    templateUrl: './editar-producto.component.html',
+    styleUrls: ['./editar-producto.component.css'],
+    standalone: false
 })
 
 export class EditarProductoComponent implements OnInit {

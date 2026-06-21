@@ -5,9 +5,10 @@ import { Venta } from 'src/app/models';
 import { VentaService } from 'src/app/services/venta/venta.service';
 
 @Component({
-  selector: 'app-buscar-ventas',
-  templateUrl: './buscar-ventas.component.html',
-  styleUrls: ['./buscar-ventas.component.css']
+    selector: 'app-buscar-ventas',
+    templateUrl: './buscar-ventas.component.html',
+    styleUrls: ['./buscar-ventas.component.css'],
+    standalone: false
 })
 
 export class BuscarVentasComponent implements OnInit {

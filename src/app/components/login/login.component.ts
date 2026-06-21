@@ -3,9 +3,10 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data/data.service';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: false
 })
 export class LoginComponent {
   username = '';

@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { Producto } from 'src/app/models';
 
 @Component({
-  selector: 'app-listar-productos',
-  templateUrl: './listar-productos.component.html',
-  styleUrls: ['./listar-productos.component.css'],
+    selector: 'app-listar-productos',
+    templateUrl: './listar-productos.component.html',
+    styleUrls: ['./listar-productos.component.css'],
+    standalone: false
 })
 
 export class ListarProductosComponent implements OnInit {

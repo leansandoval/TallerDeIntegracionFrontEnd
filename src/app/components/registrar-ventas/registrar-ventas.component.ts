@@ -5,9 +5,10 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-registrar-ventas',
-  templateUrl: './registrar-ventas.component.html',
-  styleUrls: ['./registrar-ventas.component.css']
+    selector: 'app-registrar-ventas',
+    templateUrl: './registrar-ventas.component.html',
+    styleUrls: ['./registrar-ventas.component.css'],
+    standalone: false
 })
 
 export class RegistrarVentasComponent implements OnInit {
