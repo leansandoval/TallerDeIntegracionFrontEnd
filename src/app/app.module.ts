@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { VentasComponent } from './components/ventas/ventas.component';
 import { ProductosComponent } from './components/productos/productos.component';
@@ -28,40 +28,33 @@ import { MatInputModule } from '@angular/material/input';
 import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    NavBarComponent,
-    VentasComponent,
-    ProductosComponent,
-    BuscarVentasComponent,
-    RegistrarVentasComponent,
-    ListarProductosComponent,
-    NotificacionComponent,
-    FilterNoStockPipe,
-    FilterStockPipe,
- 	SearchPipe,
-    AutocompleteComponent,
-    DetalleVentaComponent,
-    EditarProductoComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,    
-    HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        LoginComponent,
+        NavBarComponent,
+        VentasComponent,
+        ProductosComponent,
+        BuscarVentasComponent,
+        RegistrarVentasComponent,
+        ListarProductosComponent,
+        NotificacionComponent,
+        FilterNoStockPipe,
+        FilterStockPipe,
+        SearchPipe,
+        AutocompleteComponent,
+        DetalleVentaComponent,
+        EditarProductoComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatAutocompleteModule,
+        MatFormFieldModule,
+        MatInputModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
