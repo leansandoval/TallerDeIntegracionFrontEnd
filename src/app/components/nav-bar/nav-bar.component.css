@@ -1,39 +1,8 @@
 .navbar-expand {
-  /* @each $breakpoint in map-keys($grid-breakpoints) {
-    $next: breakpoint-next($breakpoint, $grid-breakpoints);
-    $infix: breakpoint-infix($next, $grid-breakpoints);
-
-    &#{$infix} {
-      @include media-breakpoint-up($next) {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-
-        .navbar-nav {
-          flex-direction: row;
-
-          .dropdown-menu {
-            position: absolute;
-          }
-
-          .nav-link {
-            padding-right: $navbar-nav-link-padding-x;
-            padding-left: $navbar-nav-link-padding-x;
-          }
-        }
-
-        .navbar-nav-scroll {
-          overflow: visible;
-        }
-
-        .navbar-collapse {
-          display: flex !important; // stylelint-disable-line declaration-no-important
-          flex-basis: auto;
-        }
-
-        .navbar-toggler {
-          display: none;
-        }
-      }
-    }
-  } */
+  :host {
+    display: block;
+    position: relative;
+    z-index: 1000;
+    /* Esto asegura que el Navbar flote SIEMPRE por encima del Login */
+  }
 }

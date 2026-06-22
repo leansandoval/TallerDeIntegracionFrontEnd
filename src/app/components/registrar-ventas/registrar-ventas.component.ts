@@ -1,44 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { VentaService } from 'src/app/services/venta/venta.service';
-import { Venta, LineaDeVenta, Producto } from 'src/app/models';
-import { ProductoService } from 'src/app/services/producto/producto.service';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { LineaDeVenta, Producto, Venta } from 'src/app/models';
+import { ProductoService } from 'src/app/services/producto/producto.service';
+import { VentaService } from 'src/app/services/venta/venta.service';
 
 @Component({
-    selector: 'app-registrar-ventas',
-    templateUrl: './registrar-ventas.component.html',
-    styleUrls: ['./registrar-ventas.component.css'],
-    standalone: false
+  selector: 'app-registrar-ventas',
+  standalone: false,
+  styleUrls: ['./registrar-ventas.component.css'],
+  templateUrl: './registrar-ventas.component.html',
 })
 
 export class RegistrarVentasComponent implements OnInit {
 
-  cliente: string = '';
-
-  venta: Venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0, rechazada: false };
-
-  producto: Producto = {} as Producto;
-
-  errorMessage: string | null = null;
-
-  miFormulario: FormGroup;
-
-  successMessage: string | null = null;
-
   cantidadform: number = 1;
-  codigoform: string = "";
-  clienteform: string = '';
-  codigoProducto: string = "";
   cantidadProducto: number = 1;
+  cliente: string = '';
+  clienteform: string = '';
+  codigoform: string = "";
+  codigoProducto: string = "";
+  errorMessage: string | null = null;
+  indexform = 0;
+  miFormulario: FormGroup;
   nombreProducto: string = "";
+  producto: Producto = {} as Producto;
+  successMessage: string | null = null;
+  venta: Venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0, rechazada: false };
 
   onProductSelected(product: Producto) {
     this.codigoProducto = product.codigo;
     this.nombreProducto = product.descripcion;
   }
 
-  indexform = 0;
-  
   constructor(private ventaService: VentaService, private productoService: ProductoService, private fb: FormBuilder) {
     const today = new Date();
     this.miFormulario = this.fb.group({
@@ -46,12 +39,11 @@ export class RegistrarVentasComponent implements OnInit {
       productos: this.fb.array([]),
       Date: [this.formatDate(today)],
       Time: this.formatTime(today),
-
       nombreProducto: [""],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   formatDate(date: Date): string {
     return date.toISOString().split('T')[0];
@@ -72,7 +64,6 @@ export class RegistrarVentasComponent implements OnInit {
     const currentMinute = currentTime.getMinutes().toString().padStart(2, '0');
     const currentSecond = currentTime.getSeconds().toString().padStart(2, '0');
     const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
-
     this.miFormulario.patchValue({
       Date: currentDate,
       Time: formattedTime
@@ -116,8 +107,6 @@ export class RegistrarVentasComponent implements OnInit {
                 this.cantidadProducto = producto.stock
                 alert('No hay stock suficiente para vender la cantidad solicitada, se modifico la cantidad automaticamente a ' + producto.stock);
               }
-
-
               const subtotal = this.cantidadProducto * producto.precio;
               this.venta.productos.push({
                 id: this.generateId(),
@@ -136,7 +125,6 @@ export class RegistrarVentasComponent implements OnInit {
             }
           }
         }
-
       },
       error => {
         alert('Producto no encontrado.');
@@ -165,7 +153,6 @@ export class RegistrarVentasComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     this.errorMessage = '';
     debugger
     this.venta.cliente = this.miFormulario.get('cliente')?.value;
@@ -175,7 +162,6 @@ export class RegistrarVentasComponent implements OnInit {
       this.errorMessage = 'Formulario inválido- Nombre de cliente obligatorio';
       return;
     }
-
     if (this.venta.productos == null || this.venta.productos.length == 0) {
       this.errorMessage = 'Formulario inválido- No se registran productos ingresados';
       console.log(this.errorMessage);
@@ -187,14 +173,11 @@ export class RegistrarVentasComponent implements OnInit {
         console.log("🚀 ~ RegistrarVentasComponent ~ onSubmit ~ data:", data);
         // alert('Venta registrada con éxito');
         this.venta.id = data.id;
-
         this.venta.productos.forEach(linea => {
           this.ventaService.crearLineaDeVenta(linea, this.venta.id).subscribe();
         });
-
         this.ventaService.actualizarStockProductosVenta(this.venta);
         this.resetForm();
-
         this.successMessage = "Venta registrada exitosamente"
       },
       error => {
