@@ -28,6 +28,8 @@ export class RegistrarVentasComponent implements OnInit {
   venta: Venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0, rechazada: false };
 
   onProductSelected(product: Producto) {
+    this.errorMessage = null;
+    this.successMessage = null;
     this.codigoProducto = product.codigo;
     this.nombreProducto = product.descripcion;
   }
@@ -71,8 +73,11 @@ export class RegistrarVentasComponent implements OnInit {
   }
 
   agregarProducto() {
+    this.errorMessage = null;
+    this.successMessage = null;
+
     if (this.codigoProducto == null || this.codigoProducto == '') {
-      this.errorMessage = 'Formulario inválido-Codigo de producto no ingresado';
+      this.errorMessage = 'Selecciona un producto del buscador antes de agregarlo.';
       return;
     }
 
@@ -154,7 +159,6 @@ export class RegistrarVentasComponent implements OnInit {
 
   onSubmit(): void {
     this.errorMessage = '';
-    debugger
     this.venta.cliente = this.miFormulario.get('cliente')?.value;
     this.venta.fecha = new Date(this.getDateTimeString());
     this.cliente = this.venta.cliente;
@@ -171,12 +175,7 @@ export class RegistrarVentasComponent implements OnInit {
     this.ventaService.crear_objetoVenta(this.venta).subscribe(
       data => {
         console.log("🚀 ~ RegistrarVentasComponent ~ onSubmit ~ data:", data);
-        // alert('Venta registrada con éxito');
         this.venta.id = data.id;
-        this.venta.productos.forEach(linea => {
-          this.ventaService.crearLineaDeVenta(linea, this.venta.id).subscribe();
-        });
-        this.ventaService.actualizarStockProductosVenta(this.venta);
         this.resetForm();
         this.successMessage = "Venta registrada exitosamente"
       },
@@ -189,6 +188,13 @@ export class RegistrarVentasComponent implements OnInit {
 
   private resetForm(): void {
     this.cliente = '';
+    this.codigoProducto = '';
+    this.cantidadProducto = 1;
+    this.miFormulario.patchValue({
+      cliente: '',
+      Date: this.formatDate(new Date()),
+      Time: this.formatTime(new Date()),
+    });
     this.venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0, rechazada: false };
   }
 

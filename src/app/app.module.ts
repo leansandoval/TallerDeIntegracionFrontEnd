@@ -15,6 +15,8 @@ import { ListarProductosComponent } from './components/listar-productos/listar-p
 import { LoginComponent } from './components/login/login.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -58,6 +60,8 @@ import { VentasComponent } from './components/ventas/ventas.component';
         CommonModule,
         FormsModule,
         MatAutocompleteModule,
+        MatButtonModule,
+        MatCardModule,
         MatFormFieldModule,
         MatInputModule,
         MatPaginatorModule,

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { map, Observable, of, startWith } from 'rxjs';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { map, Observable, startWith } from 'rxjs';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { Producto } from 'src/app/models';
 
@@ -14,45 +15,68 @@ import { Producto } from 'src/app/models';
 export class AutocompleteComponent implements OnInit {
 
   @Output() productSelected = new EventEmitter<Producto>();
-  productControl = new FormControl();
-  filteredOptions: Observable<string[]> | undefined;
+  @ViewChild(MatAutocompleteTrigger) autocompleteTrigger?: MatAutocompleteTrigger;
+
+  productControl = new FormControl<string | Producto>('');
+  filteredOptions: Observable<Producto[]> | undefined;
   allProducts: Producto[] = [];
-  cache: { [key: string]: string[] } = {};
 
   constructor(private productoService: ProductoService) { }
 
   ngOnInit() {
-    this.productControl.valueChanges.pipe(
+    this.filteredOptions = this.productControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
-    ).subscribe(filteredOptions => {
-      this.filteredOptions = of(filteredOptions);
-    });
+      map(value => this._filter(this.getFilterText(value)))
+    );
 
     this.productoService.listar_productos().subscribe((products: Producto[]) => {
-      this.allProducts = products.filter(prod => prod.activo == true);
+      this.allProducts = products.filter(prod => prod.activo === true);
+      this.productControl.updateValueAndValidity({ emitEvent: true });
     });
   }
 
-  private _filter(value: string): string[] {
+  displayProduct(product: Producto): string {
+    return product ? `${product.codigo} - ${product.descripcion}` : '';
+  }
+
+  private getFilterText(value: string | Producto | null): string {
+    if (!value) {
+      return '';
+    }
+    if (typeof value === 'string') {
+      return value;
+    }
+    return `${value.codigo} ${value.descripcion}`;
+  }
+
+  private _filter(value: string): Producto[] {
     const filterValue = value.toLowerCase();
 
-    if (this.cache[filterValue]) {
-      return this.cache[filterValue];
-    }
-
-    const filtered = this.allProducts.map(product => product.descripcion).filter(option => option.toLowerCase().includes(filterValue));
-
-    this.cache[filterValue] = filtered;
-
-    return filtered;
+    return this.allProducts.filter(product =>
+      product.codigo.toLowerCase().includes(filterValue) ||
+      product.descripcion.toLowerCase().includes(filterValue)
+    );
   }
 
   onProductSelected(event: any) {
-    const selectedProduct = this.allProducts.find(product => product.descripcion === event.option.value && product.activo === true);
+    const selectedProduct = event.option.value as Producto;
     if (selectedProduct) {
       this.productSelected.emit(selectedProduct);
+      this.clear();
     }
+  }
+
+  clear(): void {
+    this.productControl.setValue('');
+  }
+
+  showOptions(): void {
+    if (typeof this.productControl.value !== 'string') {
+      this.clear();
+    }
+
+    this.productControl.updateValueAndValidity({ emitEvent: true });
+    setTimeout(() => this.autocompleteTrigger?.openPanel());
   }
   
 }

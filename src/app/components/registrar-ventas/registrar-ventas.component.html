@@ -1,97 +1,104 @@
-<!-- <p>buscar-ventas</p> -->
-<div class="container">
-
-</div>
-<div class="container">
-  <h2>Registrar Venta</h2>
-  <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()" #ventaForm="ngForm">
-    <div class="form-group col-md-3">
-      <label for="cliente">Nombre del Cliente:</label>
-      <input type="text" id="cliente" class="form-control" name="cliente" [(ngModel)]="cliente"
-        formControlName="cliente" required>
-    </div>
-    <div class="form-group col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <label for="Date">Fecha</label>
-          <input id="Date" type="date" class="form-control" formControlName="Date">
-        </div>
-        <div class="col-md-3">
-          <label for="Time">Hora</label>
-          <input id="Time" type="time" step="1" class="form-control" formControlName="Time">
-        </div>
-        <div class="col-md-2 d-flex align-items-end">
-          <button type="button" class="btn btn-primary" (click)="updateDateTime()">Actualizar</button>
-        </div>
+<section class="sales-page">
+  <mat-card class="sales-card">
+    <div class="sales-header">
+      <div>
+        <h2>Registrar Venta</h2>
+        <p>Carga los datos del cliente y agrega los productos de la venta.</p>
       </div>
-    </div>
-    <div class="form-group mt-3 col-md-9">
-      <label for="productos">Productos*:</label>
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Eliminar</th>
-              <th>Código</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of venta.productos; let i = index">
-              <td>
-                <button type="button" class="btn btn-danger" (click)="eliminarProducto(i)">Eliminar</button>
-              </td>
-              <td>{{ item.producto.codigo }}</td>
-              <td>{{ item.producto.descripcion }}</td>
-              <td>{{ item.producto.precio | currency }}</td>
-              <td>{{ item.cantidad }}</td>
-              <td>{{ item.subtotal | currency }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="venta.productos.length==0 " class="text-danger">
-        Ingrese un producto*.
+      <div class="total-pill">
+        <span>Total a pagar</span>
+        <strong>{{ venta.total | currency }}</strong>
       </div>
     </div>
 
-    <div class="row">
+    <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()" class="sales-form">
+      <div class="form-grid">
+        <mat-form-field appearance="outline" class="client-field">
+          <mat-label>Nombre del cliente</mat-label>
+          <input matInput id="cliente" type="text" formControlName="cliente" required>
+        </mat-form-field>
 
-      <div class="row">
-        <div class="form-group col-md-10"> <!-- Campo de autocompletado -->
-          <app-autocomplete [(ngModel)]="nombreProducto"
-            (productSelected)="onProductSelected($event)"></app-autocomplete>
-        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha</mat-label>
+          <input matInput id="Date" type="date" formControlName="Date">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Hora</mat-label>
+          <input matInput id="Time" type="time" step="1" formControlName="Time">
+        </mat-form-field>
+
+        <button type="button" mat-raised-button color="primary" class="time-button" (click)="updateDateTime()">
+          Actualizar
+        </button>
       </div>
 
-      <div class="col-md-6 ">
-        <div class="form-group col-md-3">
-          <input type="text" id="codigoProducto" class="form-control" [(ngModel)]="codigoProducto" name="codigoProducto"
-            [ngModelOptions]="{standalone: true}" disabled="" placeholder="Código">
+      <div class="products-section">
+        <div class="section-title">
+          <h3>Productos</h3>
+          <span>{{ venta.productos.length }} item(s)</span>
         </div>
-        <div class="form-group col-md-3">
-          <label for="cantidadProducto">Cantidad:</label>
-          <input type="number" id="cantidadProducto" class="form-control" [(ngModel)]="cantidadProducto"
-            name="cantidadProducto" [ngModelOptions]="{standalone: true}" min="1" required>
-          <div *ngIf="cantidadProducto<=0" class="text-danger">
-            La cantidad no puede ser menor o igual a Cero.
-          </div>
+
+        <div class="table-shell" *ngIf="venta.productos.length > 0; else emptyProducts">
+          <table>
+            <thead>
+              <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of venta.productos; let i = index">
+                <td>{{ item.producto.codigo }}</td>
+                <td>{{ item.producto.descripcion }}</td>
+                <td>{{ item.producto.precio | currency }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.subtotal | currency }}</td>
+                <td class="actions-cell">
+                  <button type="button" mat-button color="warn" (click)="eliminarProducto(i)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <button type="button" class="btn btn-primary mt-4" (click)="agregarProducto()">Agregar Producto</button>
+
+        <ng-template #emptyProducts>
+          <div class="empty-state">Todavia no agregaste productos a esta venta.</div>
+        </ng-template>
       </div>
 
-      <div class="col-md-4 ">
-        <div class="bonoteraregistrar Totales">
-          <label for="cantidadProducto">Total a pagar: {{ venta.total|currency }}</label>
-          <button type="submit" class="btn btn-success mt-4">Finalizar Venta</button>
-        </div>
+      <div class="add-product-panel">
+        <app-autocomplete (productSelected)="onProductSelected($event)"></app-autocomplete>
+
+        <mat-form-field appearance="outline" class="code-field">
+          <mat-label>Codigo</mat-label>
+          <input matInput type="text" [value]="codigoProducto" disabled>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="quantity-field">
+          <mat-label>Cantidad</mat-label>
+          <input matInput type="number" [(ngModel)]="cantidadProducto" name="cantidadProducto"
+            [ngModelOptions]="{standalone: true}" min="1" required>
+          <mat-error *ngIf="cantidadProducto <= 0">La cantidad debe ser mayor a cero.</mat-error>
+        </mat-form-field>
+
+        <button type="button" mat-raised-button color="primary" class="add-button" (click)="agregarProducto()">
+          Agregar producto
+        </button>
       </div>
 
-    </div>
-  </form>
+      <div class="submit-row">
+        <button type="submit" mat-raised-button color="primary" class="submit-button">
+          Finalizar venta
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
   <app-notificacion [mensaje]="successMessage" tipo="exito"></app-notificacion>
   <app-notificacion [mensaje]="errorMessage" tipo="error"></app-notificacion>
-</div>
+</section>

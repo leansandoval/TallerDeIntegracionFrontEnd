@@ -1,8 +1,8 @@
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { LineaDeVenta, Producto, Venta } from 'src/app/models';
+import { CrearVentaRequest, LineaDeVenta, Producto, Venta } from 'src/app/models';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,24 +17,7 @@ export class VentaService {
   constructor(private http: HttpClient) { }
 
   registrarVenta(venta: Venta): Observable<Venta> {
-    venta.id = this.generateId();
-    venta.fecha = new Date();
-    this.crear_objetoVenta(venta);
-    this.actualizarStockProductosVenta(venta);
-    return of(venta);
-  }
-
-  private actualizarStock(venta: Venta): void {
-    venta.productos.forEach(item => {
-      const producto = this.productos.find(p => p.codigo === item.producto.codigo);
-      if (producto) {
-        producto.stock -= item.cantidad;
-      }
-    });
-  }
-
-  private generateId(): number {
-    return Date.now() + Math.floor(Math.random() * 1000);
+    return this.crear_objetoVenta(venta);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
@@ -55,7 +38,7 @@ export class VentaService {
   }
 
   crear_objetoVenta(venta: Venta) {
-    return this.http.post<any>(`${this.apiUrl}/ventas`, venta).pipe(
+    return this.http.post<Venta>(`${this.apiUrl}/ventas`, this.toCrearVentaRequest(venta)).pipe(
       catchError(this.handleError)
     );
   }
@@ -96,5 +79,21 @@ export class VentaService {
 
   getVentaPorIdVenta(ventaId: any): Observable<Venta> {
     return this.http.get<Venta>(`${this.apiUrl}/ventas/${ventaId}`);
+  }
+
+  private toCrearVentaRequest(venta: Venta): CrearVentaRequest {
+    return {
+      fecha: this.toLocalDateTimeString(venta.fecha),
+      cliente: venta.cliente,
+      productos: venta.productos.map(linea => ({
+        codigoProducto: linea.producto.codigo,
+        cantidad: linea.cantidad,
+      })),
+    };
+  }
+
+  private toLocalDateTimeString(fecha: Date): string {
+    const pad = (value: number) => value.toString().padStart(2, '0');
+    return `${fecha.getFullYear()}-${pad(fecha.getMonth() + 1)}-${pad(fecha.getDate())}T${pad(fecha.getHours())}:${pad(fecha.getMinutes())}:${pad(fecha.getSeconds())}`;
   }
 }

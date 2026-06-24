@@ -1,9 +1,9 @@
 <mat-form-field class="col-md-12">
   <input type="text" matInput [formControl]="productControl" [matAutocomplete]="auto"
-    placeholder="Busqueda de productos...">
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onProductSelected($event)">
+    placeholder="Buscar por codigo o descripcion..." (focus)="showOptions()" (click)="showOptions()">
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayProduct" (optionSelected)="onProductSelected($event)">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-      {{ option }}
+      {{ option.codigo }} - {{ option.descripcion }} | Stock: {{ option.stock }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

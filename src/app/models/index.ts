@@ -22,4 +22,15 @@ export interface Producto {
     total: number;
     rechazada: boolean;
   }
+
+  export interface CrearLineaVentaRequest {
+    codigoProducto: string;
+    cantidad: number;
+  }
+
+  export interface CrearVentaRequest {
+    fecha: string;
+    cliente: string;
+    productos: CrearLineaVentaRequest[];
+  }
   
