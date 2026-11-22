@@ -1,4 +1,5 @@
 # Taller de Integración - FrontEnd
+Front-End del Sistema de Control de Stock implementado con Framework Angular de la materia Taller de Integración (3680) - 1C 2024 - UNLaM.
 
 ## Información de la Asignatura
 * **Carrera**: Ingeniería en Informática
