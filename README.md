@@ -1,162 +1,200 @@
-# Taller de Integración - FrontEnd
-Front-End del Sistema de Control de Stock implementado con Framework Angular de la materia Taller de Integración (3680) - 1C 2024 - UNLaM.
+<div align="center">
+  <h1>🅰️ Taller de Integración - FrontEnd</h1>
+  <p><em>Front-End del Sistema de Control de Stock desarrollado con el framework Angular (3680) - 1C 2024 - UNLaM.</em></p>
 
-## Información de la Asignatura
+  <!-- Badges -->
+  <img src="https://img.shields.io/badge/Universidad-UNLaM-1F4F90?style=for-the-badge&logo=google-scholar&logoColor=white" alt="UNLaM" />
+  <img src="https://img.shields.io/badge/Año-2024-2EA043?style=for-the-badge" alt="2024" />
+  <img src="https://img.shields.io/badge/Framework-Angular_16.2-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" /><img src="https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Grupo-1-7057D2?style=for-the-badge" alt="Grupo 1" />
+  <img src="https://img.shields.io/badge/Estado-Completado-blue?style=for-the-badge" alt="Completado" />
+</div>
+
+<br>
+
+## 📑 Índice
+- [Información de la Asignatura](#informacion-de-la-asignatura)
+- [Trayecto - Gestión y Complementarias](#trayecto)
+- [Docentes](#docentes)
+- [Integrantes del Grupo](#integrantes)
+- [Guía de Configuración e Instalación](#guia-de-configuracion-e-instalacion)
+- [Comandos Principales de Angular CLI](#comandos-principales-de-angular-cli)
+- [Herramientas Utilizadas](#herramientas-utilizadas)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+
+---
+
+<a id="informacion-de-la-asignatura"></a>
+## ℹ️ Información de la Asignatura
 * **Carrera**: Ingeniería en Informática
 * **Asignatura**: Taller de Integración (3680)
 * **Cuatrimestre**: Primer Cuatrimestre
 * **Año**: 2024
 * **Grupo**: 1
 
-## Trayecto - Gestión y Complementarias
-
+<a id="trayecto"></a>
+## 👨‍💻 Trayecto - Gestión y Complementarias
 * **Año académico**: Segundo Año - Segundo Cuatrimestre
-* **Responsable / Jefe de catedra**: Eribe, Roberto
+* **Responsable / Jefe de cátedra**: Eribe, Roberto
 * **Carga horaria semanal**: 4 hs
 * **Carga horaria total**: 64 hs
 * **Modalidad**: Virtual
-* **Correlativas anteriores**
-    * Principios de Calidad de Software (3626)
-    * Introducción a la Gestión de Requisitos (3630)
-    * Introducción a Proyectos Informáticos (3632)
-    * Tópicos de Programación (3635)
-    * Bases de Datos (3636)
-    * Arquitectura de Computadoras (3638)
+* **Correlativas anteriores**:
+  * Principios de Calidad de Software (3626)
+  * Introducción a la Gestión de Requisitos (3630)
+  * Introducción a Proyectos Informáticos (3632)
+  * Tópicos de Programación (3635)
+  * Bases de Datos (3636)
+  * Arquitectura de Computadoras (3638)
 
-## Docentes
+<a id="docentes"></a>
+## 👨‍🏫 Docentes
 * Bucher, Mariano
 * Eribe, Roberto
 * Paker, Fernando
 
-## Integrantes
+<a id="integrantes"></a>
+## 👥 Integrantes
+<div align="center">
+
 | DNI | Apellido/s | Nombre/s |
-|--|--|--|
-| 40.137.650 | Corrales | Mauro Exequiel |
-| 44.834.085 | Justiniano | Maximo |
-| 37.276.705 | Pompeo | Nicolas Ruben |
-| 41.548.235 | Sandoval Vasquez | Juan Leandro |
-| 37.841.788 | Sullca | Willian Fernando |
+| :--: | :--: | :--: |
+| **40.137.650** | Corrales | Mauro Exequiel |
+| **44.834.085** | Justiniano | Maximo |
+| **37.276.705** | Pompeo | Nicolas Ruben |
+| **41.548.235** | Sandoval Vasquez | Juan Leandro |
+| **37.841.788** | Sullca | Willian Fernando |
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
+</div>
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<a id="guia-de-configuracion-e-instalacion"></a>
+## 🛠️ Guía de Configuración e Instalación
 
-## Code scaffolding
+Este proyecto fue generado utilizando **[Angular CLI](https://github.com/angular/angular-cli)** versión `16.2.6`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 1. Instalación de Angular CLI 16.2
 
-## Build
+* **En el proyecto local**:
+  Abre una terminal en la carpeta raíz del proyecto y ejecuta:
+  ```bash
+  npm install @angular/cli@16.2
+  ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* **De forma global en la PC**:
+  Para poder usar la versión `16.2` globalmente en cualquier terminal:
+  ```bash
+  npm install -g @angular/cli@16.2
+  ```
 
-## Running unit tests
+* **Verificación de versión**:
+  Para confirmar la instalación correcta de Node, npm y Angular CLI:
+  ```bash
+  ng version
+  ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2. Instalación de Dependencias y Componentes UI
 
-## Running end-to-end tests
+* **Instalar paquetes del proyecto**:
+  ```bash
+  npm install
+  ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* **Agregar Angular Material**:
+  ```bash
+  ng add @angular/material
+  ```
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<a id="comandos-principales-de-angular-cli"></a>
+## 🚀 Comandos Principales de Angular CLI
 
-
-# Mini Documentación
-
-
-### Para agregar Angular CLI 16.2 a tu proyecto o a tu PC y verificar si está instalada, puedes seguir estos pasos:
-
-Instalar Angular CLI 16.2 en tu proyecto:
-Abre una terminal en la carpeta raíz de tu proyecto y ejecuta el siguiente comando:
-
-
-`npm install @angular/cli@16.2`
-
-Esto instalará Angular CLI 16.2 en tu proyecto, específicamente en la carpeta node_modules de tu proyecto.
-
-Instalar Angular CLI 16.2 globalmente en tu PC:
-Si deseas instalar Angular CLI 16.2 globalmente en tu PC para usarlo en cualquier proyecto, ejecuta el siguiente comando en tu terminal:
-
-
-`npm install -g @angular/cli@16.2`
-
-Esto instalará Angular CLI 16.2 globalmente en tu sistema.
-
-Verificar la versión de Angular CLI:
-Para verificar si Angular CLI está instalado correctamente y ver su versión, puedes ejecutar el siguiente comando en tu terminal:
-
-
-`ng version`
-
-Esto mostrará la versión de Angular CLI instalada tanto a nivel global como local (si está instalada en tu proyecto).
-
-Al seguir estos pasos, podrás instalar Angular CLI 16.2 en tu proyecto o en tu PC y verificar si está instalada correctamente. Recuerda que los comandos deben ejecutarse en una terminal o símbolo del sistema con acceso a Node.js y npm.
-
-`ng i` en el casopara instalar las dependencias
-
-`ng add @angular/material` instalacion de materia...
-
-
-###  Comandos Utilizados
-
-### ng new <nombre_proyecto>: 
-
-Este comando se utiliza para crear un nuevo proyecto Angular. Por ejemplo:
- 
-```console
-ng new my-project
+### Servidor de Desarrollo
+Ejecuta `ng serve` para iniciar el servidor local. Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente ante cualquier cambio en los archivos fuente.
+```bash
+ng serve
 ```
 
-Crea una nueva carpeta con el nombre especificado y configura un nuevo proyecto Angular dentro de esa carpeta.
+### Generación de Código (Scaffolding)
+Para generar un nuevo componente, servicio o módulo:
 
-### ng generate component <nombre_componente>: 
-Genera un nuevo componente Angular en la carpeta src/app. Por ejemplo:
+* **Crear un nuevo proyecto**:
+  ```bash
+  ng new nombre-del-proyecto
+  ```
 
+* **Generar un Componente**:
+  ```bash
+  ng generate component components/home
+  ```
+  *Crea la estructura del componente (TypeScript, HTML, CSS, Test) en `src/app/components/home`.*
 
-```console
-ng generate component components/home
+* **Generar un Servicio**:
+  ```bash
+  ng generate service services/auth/auth --flat
+  ```
+  *Genera el servicio en `src/app/services/auth` y lo registra en el módulo correspondiente.*
+
+### Compilación (Build)
+Para compilar los artefactos de producción en el directorio `dist/`:
+```bash
+ng build
 ```
 
-Esto crea una carpeta home dentro de src/app/components con los archivos necesarios para el componente (archivo TypeScript, HTML, CSS, etc.).
+### Pruebas (Tests)
+* **Pruebas Unitarias**: Ejecutar con Karma.
+  ```bash
+  ng test
+  ```
+* **Pruebas End-to-End (E2E)**:
+  ```bash
+  ng e2e
+  ```
 
-### ng generate service <nombre_servicio>:
- Genera un nuevo servicio Angular en la carpeta src/app. Por ejemplo:
+---
 
+<a id="herramientas-utilizadas"></a>
+## 🛠️ Herramientas Utilizadas
+* **Angular 16.2**: Framework de desarrollo Web de SPA (Single Page Application) basado en componentes.
+* **TypeScript**: Lenguaje fuertemente tipado empleado para la lógica de componentes, modelos y servicios.
+* **Angular Material**: Biblioteca de componentes UI para la interfaz del sistema de stock.
+* **RxJS**: Librería para la programación reactiva y gestión de flujos de datos asíncronos en peticiones HTTP.
+* **HTML5 & CSS3**: Maquetación y estilos visuales de la aplicación.
+* **Node.js & npm**: Entorno de ejecución y gestor de paquetes del proyecto.
+* **Karma & Jasmine**: Entorno y suite para pruebas unitarias automatizadas.
+* **Visual Studio Code**: IDE principal utilizado para la codificación y desarrollo.
 
-```console
-ng generate service services/auth/auth --flat
+---
+
+<a id="estructura-del-proyecto"></a>
+## 📁 Estructura del Proyecto
+
+```text
+📦 TallerDeIntegracionFrontEnd
+ ┣ 📂 src
+ ┃ ┣ 📂 app
+ ┃ ┃ ┣ 📂 components
+ ┃ ┃ ┃ ┣ 📂 home
+ ┃ ┃ ┃ ┃ ┣ 📜 home.component.ts
+ ┃ ┃ ┃ ┃ ┣ 📜 home.component.html
+ ┃ ┃ ┃ ┃ ┗ 📜 home.component.css
+ ┃ ┃ ┃ ┣ 📂 login
+ ┃ ┃ ┃ ┗ 📜 ... (otros componentes)
+ ┃ ┃ ┣ 📂 services
+ ┃ ┃ ┃ ┣ 📂 auth
+ ┃ ┃ ┃ ┃ ┗ 📜 auth.service.ts
+ ┃ ┃ ┃ ┣ 📂 data
+ ┃ ┃ ┃ ┃ ┗ 📜 data.service.ts
+ ┃ ┃ ┃ ┗ 📜 ... (otros servicios)
+ ┃ ┃ ┣ 📜 app.component.ts
+ ┃ ┃ ┣ 📜 app.module.ts
+ ┃ ┃ ┗ 📜 app-routing.module.ts
+ ┃ ┣ 📂 assets
+ ┃ ┣ 📜 index.html
+ ┃ ┗ 📜 main.ts
+ ┣ 📜 angular.json
+ ┣ 📜 package.json
+ ┗ 📜 README.md
 ```
-
-Esto crea un archivo TypeScript para el servicio dentro de la carpeta src/app/services/auth y lo registra automáticamente en el módulo correspondiente.
-
-# Estructura de Carpetas
-## Componentes: 
-Los componentes generados se guardarán en la carpeta **src/app/components** por defecto.
-
-
-home
-login
-Otros componentes aquí...
-
-## Servicios:
- Los servicios generados se guardarán en la carpeta **src/app/services** por defecto.
-
-> auth
-
-    > auth.service.ts
-
-> data
-
-    > data.service.ts
-
-`Otros servicios aquí...`
-
-Para una estructura más organizada, puedes crear subcarpetas dentro de la carpeta services para organizar tus servicios. 
-
-Por ejemplo, una carpeta auth para el servicio de autenticación y una carpeta data para otros servicios relacionados con datos.
-
-Siguiendo esta estructura, tus archivos estarán bien organizados y será más fácil mantener tu proyecto a medida que crezca.
-
