@@ -74,7 +74,19 @@
 
 Este proyecto fue generado utilizando **[Angular CLI](https://github.com/angular/angular-cli)** versión `16.2.6`.
 
+<div align="center">
+  <img width="700" alt="Introducción a Angular" src="https://github.com/user-attachments/assets/208a9d0c-5f8b-4a74-83c2-eadf4049d1c0" />
+  <br>
+  <sup><em>Introducción a Angular</em></sup>
+</div>
+
 ### 1. Instalación de Angular CLI 16.2
+
+<div align="center">
+  <img width="700" alt="¿Qué es Angular CLI?" src="https://github.com/user-attachments/assets/be6360c3-7307-470f-b637-568b3db8c396" />
+  <br>
+  <sup><em>¿Qué es Angular CLI?</em></sup>
+</div>
 
 * **En el proyecto local**:
   Abre una terminal en la carpeta raíz del proyecto y ejecuta:
@@ -110,6 +122,12 @@ Este proyecto fue generado utilizando **[Angular CLI](https://github.com/angular
 
 <a id="comandos-principales-de-angular-cli"></a>
 ## 🚀 Comandos Principales de Angular CLI
+
+<div align="center">
+  <img width="700" alt="¿Qué es TypeScript?" src="https://github.com/user-attachments/assets/ad9415cc-db2f-45ce-ba0a-02e2d57e8f2c" />
+  <br>
+  <sup><em>¿Qué es Angular CLI?</em></sup>
+</div>
 
 ### Servidor de Desarrollo
 Ejecuta `ng serve` para iniciar el servidor local. Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente ante cualquier cambio en los archivos fuente.
