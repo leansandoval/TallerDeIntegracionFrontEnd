@@ -102,7 +102,7 @@ Al seguir estos pasos, podrás instalar Angular CLI 16.2 en tu proyecto o en tu 
 
 ###  Comandos Utilizados
 
-## ng new <nombre_proyecto>: 
+### ng new <nombre_proyecto>: 
 
 Este comando se utiliza para crear un nuevo proyecto Angular. Por ejemplo:
  
