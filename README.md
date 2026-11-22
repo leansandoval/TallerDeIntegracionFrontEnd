@@ -99,7 +99,7 @@ Al seguir estos pasos, podrás instalar Angular CLI 16.2 en tu proyecto o en tu 
 `ng add @angular/material` instalacion de materia...
 
 
-# ###  Comandos Utilizados
+###  Comandos Utilizados
 
 ## ng new <nombre_proyecto>: 
 
